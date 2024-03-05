@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Shop Check-In</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form id="checkInForm">
+            <h2>BarberShop Check-Ins</h2>
+            
+            <label for="barberSelect">Choose Your Barber:</label>
+            <select id="barberSelect" name="barber">
+                <% barbers.forEach(barber => { %>
+                    <option value="<%= barber.name %>"><%= barber.name %></option>
+                <% }); %>
+            </select>
+            
+            <label for="haircutType">Select Haircut Type:</label>
+            <select id="haircutType" name="haircutType">
+                <option value="adultHaircut">Adult Haircut</option>
+                <option value="haircutBeard">Haircut and Beard</option>
+                <option value="kidsCut">Kids Cut</option>
+                <option value="seniorCut">Senior Cut</option>
+                <option value="beardOnly">Beard Only</option>
+                <option value="lineupOnly">Lineup Only</option>
+            </select>
+
+            <label for="clientName">Your Name:</label>
+            <input type="text" id="clientName" name="clientName" required>
+            
+            <label for="clientNumber">Your Number:</label>
+            <input type="tel" id="clientNumber" name="clientNumber" required>
+            
+            <button type="submit">Check In</button>
+        </form>
+    </div>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+        document.getElementById('checkInForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                barberName: document.getElementById('barberSelect').value,
+                haircutType: document.getElementById('haircutType').value,
+                clientName: document.getElementById('clientName').value,
+                clientNumber: document.getElementById('clientNumber').value,                
+            };
+            
+            fetch('/check-in', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => { 
+
+                
+                document.getElementById('checkInForm').reset();
+                alert('Your check-in was successful. ' + formData.barberName + ' will get to your cut shortly.' );
+                // Clear the form fields
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting check-in.');
+            });
+        });
+    </script>
+</body>
+</html>

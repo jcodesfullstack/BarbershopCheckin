@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    margin: 0; /* Remove default margin */
+}
+
+.form-container {
+    background-color: #28282B;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Adjust based on preference */
+    max-width: 500px; /* Adjust based on preference */
+}
+
+form h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px; /* Space between title and form elements */
+}
+
+form label {
+    margin-top: 10px;
+    display: block;
+    color: white;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+form input, form select {
+    background-color: #fff; /* Optional: change if you prefer different styles */
+}
+
+form button {
+    margin-top: 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+form button:hover {
+    background-color: #004494;
+}
+
+#checkInForm{
+    color: white;
+}

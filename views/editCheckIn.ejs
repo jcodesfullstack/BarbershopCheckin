@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Check-In Records</title>
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Ensure your CSS path is correct -->
+</head>
+<body>
+    <h1>Check-In Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Barber Name</th>
+                <th>Client Name</th>
+                <th>Client Number</th>
+                <th>Haircut Type</th>
+                <th>Check-In Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% checkIns.forEach(checkIn => { %>
+                <tr>
+                    <td><%= checkIn.barberName %></td> <!-- Directly display barber's name -->
+                    <td><%= checkIn.clientName %></td>
+                    <td><%= checkIn.clientNumber %></td>
+                    <td><%= checkIn.haircutType %></td>
+                    <td><%= new Date(checkIn.checkInTime).toLocaleString() %></td>
+                    <td><%= checkIn.status %></td>
+                    <td>
+                        <% if(checkIn.status === 'pending') { %>
+                            <a href="/admin/check-ins/start/<%= checkIn._id %>">Start</a>
+                        <% } %>
+                        <% if(checkIn.status === 'in-progress') { %>
+                            <a href="/admin/check-ins/complete/<%= checkIn._id %>">Complete</a>
+                        <% } %>
+                        
+                        <a href="/admin/check-ins/delete/<%= checkIn._id %>" onclick="return confirm('Are you sure?');">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
