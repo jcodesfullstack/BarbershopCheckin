@@ -41,14 +41,13 @@ app.use(express.static('public'));
 app.use(methodOverride('_method'));
 
 app.get("/", (req, res) => {
-    const barbers = [
-        { id: 'capone', name: 'Capone' },
+    const barbers = [   
         { id: 'jelo', name: 'Jelo' },
         { id: 'vince', name: 'Vince' },
         { id: 'xavier', name: 'Xavier' },
-        { id: 'zack', name: 'Zack' },
+        { id: 'Gonzo', name: 'Gonzo' },
         { id: 'cesar', name: 'Cesar' },
-        { id: 'jesus', name: 'Jesus' }
+        { id: 'jblurry', name: 'Jblurry' }
     ];
     res.render("index", { barbers });
 });
@@ -75,7 +74,10 @@ app.get("/admin/check-ins", async (req, res) => {
         const checkIns = await CheckIn.find().sort({ checkInTime: -1 });
         res.render("adminCheckIns", { checkIns });
     } catch (error) {
-        console.error('Error fetching check-ins:', error);
+
+
+console.error("Error fetching check-ins: ", error);
+
         res.status(500).send('Error fetching check-ins');
     }
 });
@@ -84,6 +86,7 @@ app.get("/admin/check-ins", async (req, res) => {
 
 app.get("/admin/check-ins/delete/:id", async (req, res) => {
     try {
+
         await CheckIn.findByIdAndDelete(req.params.id);
         res.redirect('/admin/check-ins');
     } catch (error) {
@@ -91,6 +94,8 @@ app.get("/admin/check-ins/delete/:id", async (req, res) => {
         res.status(500).send('Error deleting check-in');
     }
 });
+
+
 
 app.get("/admin/check-ins/start/:id", async (req, res) => {
     try {
@@ -100,6 +105,7 @@ app.get("/admin/check-ins/start/:id", async (req, res) => {
         });
         res.redirect('/admin/check-ins');
     } catch (error) {
+       
         console.error('Error starting check-in:', error);
         res.status(500).send('Error updating check-in status');
     }
@@ -110,6 +116,7 @@ app.get("/admin/check-ins/complete/:id", async (req, res) => {
         await CheckIn.findByIdAndUpdate(req.params.id, { status: 'completed' });
         res.redirect('/admin/check-ins');
     } catch (error) {
+        
         console.error('Error completing check-in:', error);
         res.status(500).send('Error updating check-in status');
     }

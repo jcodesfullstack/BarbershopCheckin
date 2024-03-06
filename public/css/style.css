@@ -65,3 +65,14 @@ form button:hover {
     align-items: center;
     width: 100%;
 }
+
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    /* Additional styling */
+    font-size: 16px; /* Make text larger for readability */
+}
