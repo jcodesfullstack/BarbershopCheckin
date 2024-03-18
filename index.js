@@ -47,7 +47,8 @@ app.get("/", (req, res) => {
         { id: 'xavier', name: 'Xavier' },
         { id: 'Gonzo', name: 'Gonzo' },
         { id: 'cesar', name: 'Cesar' },
-        { id: 'jblurry', name: 'Jblurry' }
+        { id: 'jblurry', name: 'Jblurry' },
+        { id: 'josh', name: 'Josh' }
     ];
     res.render("index", { barbers });
 });
