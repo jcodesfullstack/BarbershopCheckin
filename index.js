@@ -42,13 +42,10 @@ app.use(methodOverride('_method'));
 
 app.get("/", (req, res) => {
     const barbers = [   
-        { id: 'jelo', name: 'Jelo' },
-        { id: 'vince', name: 'Vince' },
-        { id: 'xavier', name: 'Xavier' },
-        { id: 'Gonzo', name: 'Gonzo' },
-        { id: 'cesar', name: 'Cesar' },
-        { id: 'jblurry', name: 'Jblurry' },
-        { id: 'josh', name: 'Josh' }
+        { id: 'barber1', name: 'Barber 1' },
+        { id: 'barber2', name: 'Barber 2' },
+        { id: 'barber3', name: 'Barber 3' },
+        { id: 'barber4', name: 'Barber 4' }
     ];
     res.render("index", { barbers });
 });
